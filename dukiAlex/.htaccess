@@ -1,0 +1,48 @@
+Options +FollowSymLinks -Indexes
+
+RewriteEngine On
+
+# Block out any script trying to base64_encode data within the URL.
+RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+# Block out any script that includes a <script> tag in URL.
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL.
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL.
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Return 403 Forbidden header and show the content of the root homepage
+RewriteRule .* index.php [F]
+#
+## End - Rewrite rules to block out some common exploits.
+
+#### @RS
+# Deny access to php, xml and ini files 
+# within components and plugins directories
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} \.php|\.ini|\.xml [NC]
+RewriteCond %{REQUEST_URI} \/components\/ [OR]
+RewriteCond %{REQUEST_URI} ^\/includes\/|^\/administrator\/includes\/ [OR]
+RewriteCond %{REQUEST_URI} \/language\/ [OR]
+RewriteCond %{REQUEST_URI} \/libraries\/ [OR]
+RewriteCond %{REQUEST_URI} \/modules\/ [OR]
+RewriteCond %{REQUEST_URI} \/plugins\/ [OR]
+RewriteCond %{REQUEST_URI} \/templates\/ [OR]
+RewriteCond %{REQUEST_URI} \/xmlrpc\/
+RewriteRule ^(.*)$ index.php [R=404,L]
+#### @RS
+
+#### @RS
+# Prevent most common SQL-Injections
+RewriteCond %{query_string} concat.*\( [NC,OR]
+RewriteCond %{query_string} union.*select.*\( [NC,OR]
+RewriteCond %{query_string} union.*all.*select [NC]
+RewriteRule ^(.*)$ index.php [F,L]
+#### @RS
+
+#### @RS
+# Block most common hacking tools
+SetEnvIf user-agent "Indy Library" stayout=1
+SetEnvIf user-agent "libwww-perl" stayout=1
+SetEnvIf user-agent "Wget" stayout=1
+deny from env=stayout
+#### @RS

@@ -1,0 +1,38 @@
+/*
+Theme Name: Duki Aleksey - test
+Author: Duki Aleksey
+Author URI: http://webinspiration.by/
+Description: Simple theme, creating just for WP test.
+Version: 0.01
+License: Free
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: aisconverse.com, test, dukiAlex
+
+I  bielive, that creating this test theme helps me to get a high paying job in good company.
+*/
+
+body{
+	max-width: 900px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #f4f4f4;
+}
+
+aside{
+	width: 31%;
+	float: right;
+	margin-left: 2%;
+}
+
+section, article{
+	width: 65%;
+	float: left;
+	background-color: #fff;
+	padding: 1%;
+}
+
+footer{
+	width: 100%;
+	display: table;
+	
+}
