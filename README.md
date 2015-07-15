@@ -61,7 +61,8 @@ https://wpbakery.atlassian.net/wiki/pages/viewpage.action?pageId=524332
 
 Как видно в документаци уже есть реализация неоходимого шорткода. Необходимо только заменить некоторые значения.
 
-('<?php
+'''php
+<?php
 add_action( 'vc_before_init', 'your_name_integrateWithVC' );
 function your_name_integrateWithVC() {
    vc_map( array(
@@ -92,7 +93,8 @@ function your_name_integrateWithVC() {
       )
    ) );
 }
-?> ')
+?>
+'''
 
 
 ## 4. Ответы на вопросы
