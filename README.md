@@ -61,40 +61,40 @@ https://wpbakery.atlassian.net/wiki/pages/viewpage.action?pageId=524332
 
 Как видно в документаци уже есть реализация неоходимого шорткода. Необходимо только заменить некоторые значения.
 
-('''php
+'''php
 
-add_action( 'vc_before_init', 'your_name_integrateWithVC' );
-function your_name_integrateWithVC() {
-   vc_map( array(
-      "name" => __( "AIS Test Shortcode", "my-text-domain" ),
-      "base" => "ais_test",
-      "class" => "",
-      "category" => __( "Content", "my-text-domain"),
-      'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-      'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
-      "params" => array(
-         array(
-            "type" => "textfield",
-            "holder" => "div",
-            "class" => "",
-            "heading" => __( "Text", "my-text-domain" ),
-            "param_name" => "ais",
-            "value" => __( "Default param value", "my-text-domain" ),
-            "description" => __( "Description for ais param.", "my-text-domain" )
-         ),
-         array(
-            "type" => "colorpicker",
-            "class" => "",
-            "heading" => __( "Text color", "my-text-domain" ),
-            "param_name" => "color",
-            "value" => '#FF0000', //Default Red color
-            "description" => __( "Choose text color", "my-text-domain" )
-         )
-      )
-   ) );
-}
+	add_action( 'vc_before_init', 'your_name_integrateWithVC' );
+	function your_name_integrateWithVC() {
+	   vc_map( array(
+	      "name" => __( "AIS Test Shortcode", "my-text-domain" ),
+	      "base" => "ais_test",
+	      "class" => "",
+	      "category" => __( "Content", "my-text-domain"),
+	      'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+	      'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+	      "params" => array(
+	         array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Text", "my-text-domain" ),
+	            "param_name" => "ais",
+	            "value" => __( "Default param value", "my-text-domain" ),
+	            "description" => __( "Description for ais param.", "my-text-domain" )
+	         ),
+	         array(
+	            "type" => "colorpicker",
+	            "class" => "",
+	            "heading" => __( "Text color", "my-text-domain" ),
+	            "param_name" => "color",
+	            "value" => '#FF0000', //Default Red color
+	            "description" => __( "Choose text color", "my-text-domain" )
+	         )
+	      )
+	   ) );
+	}
 
-''')
+'''
 
 
 ## 4. Ответы на вопросы
